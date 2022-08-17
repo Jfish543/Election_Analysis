@@ -8,9 +8,9 @@ from sqlite3 import IntegrityError
 from tkinter.tix import INTEGER
 
 # Add a variable to load a file from a path.
-file_to_load = os.path.join("..", "Resources", "election_results.csv")
+file_to_load = os.path.join("..", "Election_Analysis", "election_results.csv")
 # Add a variable to save the file to a path.
-file_to_save = os.path.join("analysis", "election_analysis.txt")
+file_to_save = os.path.join("..", "Election_Analysis", "election_analysis.txt")
 
 # Initialize a total vote counter.
 total_votes = 0
@@ -22,7 +22,7 @@ candidate_votes = {}
 # 1: Create a county list and county votes dictionary.
 
 county_list = []
-candidate_votes = {}
+county_votes = {}
 
 # Track the winning candidate, vote count and percentage
 winning_candidate = ""
@@ -69,7 +69,7 @@ with open(file_to_load) as election_data:
 
         # 4a: Write an if statement that checks that the
         # county does not match any existing county in the county list.
-        if county_name not in county_list
+        if county_name not in county_list:
 
             # 4b: Add the existing county to the list of counties.
             county_list.append(county_name)
@@ -98,12 +98,10 @@ with open(file_to_save, "w") as txt_file:
     # 6a: Write a for loop to get the county from the county dictionary.
     for county in county_list:
         # 6b: Retrieve the county vote count.
-        county_vote = county_vote.get(county)
+        county_vote = county_votes.get(county)
 
         # 6c: Calculate the percentage of votes for the county.
-        county_vote = INTEGER
-        total_votes = INTEGER
-        county_percent_vote = county_vote / total_votes * 100
+        county_percent_vote = float(county_vote) / float(total_votes) * 100
 
          # 6d: Print the county results to the terminal.
         election_results = f"{county}: {county_percent_vote:.1f}% ({county_vote:,})\n"
